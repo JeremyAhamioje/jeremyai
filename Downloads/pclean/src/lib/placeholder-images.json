@@ -1,0 +1,46 @@
+{
+  "placeholderImages": [
+    {
+      "id": "pagani-hero",
+      "description": "Pagani Utopia Roadster hero shot.",
+      "imageUrl": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1760300035/Pagani_Zonda_R_uqvt7p.jpg",
+      "imageHint": "red supercar"
+    },
+    {
+      "id": "pagani-design",
+      "description": "Close up on the design details of the car.",
+      "imageUrl": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1760300566/Pagani_ewle2o.jpg",
+      "imageHint": "car detail"
+    },
+    {
+      "id": "pagani-power",
+      "description": "Horacio Pagani with car.",
+      "imageUrl": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1760911495/Horacio_Pagani_vhbjjp.jpg",
+      "imageHint": "car designer"
+    },
+    {
+      "id": "pagani-craft",
+      "description": "Interior craftsmanship of the Pagani.",
+      "imageUrl": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1760300705/Pagani_Zonda_R_bycy2o.jpg",
+      "imageHint": "car interior"
+    },
+    {
+      "id": "config-exterior",
+      "description": "Configuration options for the car's exterior.",
+      "imageUrl": "https://images.unsplash.com/photo-1512080482556-ea648017576c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjYXIlMjBwYWludHxlbnwwfHx8fDE3NjA5MTI1MzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "car paint"
+    },
+    {
+      "id": "config-interior",
+      "description": "Configuration options for the car's interior.",
+      "imageUrl": "https://images.unsplash.com/photo-1622102435086-9fa83554d55f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bGVhdGhlciUyMHNlYXRzfGVufDB8fHx8MTc2MDgxOTk4OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather seats"
+    },
+    {
+      "id": "config-wheels",
+      "description": "Configuration options for the car's wheels.",
+      "imageUrl": "https://images.unsplash.com/photo-1688885387704-67df0a0c4be7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YWxsb3klMjB3aGVlbHxlbnwwfHx8fDE3NjA4NzA4OTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "alloy wheel"
+    }
+  ]
+}

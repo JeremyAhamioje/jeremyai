@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\jenni\\\\Downloads\\\\pclean\" -Force)",
+      "Bash(Select-Object Name, FullName)",
+      "PowerShell(head -50)"
+    ]
+  }
+}
