@@ -11,6 +11,8 @@ export function LandingPage() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const [mounted, setMounted] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
+  const [ticketmasterEvents, setTicketmasterEvents] = useState<any[]>([])
+  const [loadingEvents, setLoadingEvents] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -163,10 +165,23 @@ export function LandingPage() {
     },
   ]
 
-  const handleToolClick = (tool: (typeof tools)[0]) => {
+  const handleToolClick = async (tool: (typeof tools)[0]) => {
     if (tool.status === 'soon') return
     if (tool.route === 'modal') {
       setModalOpen(true)
+      // Fetch ticketmaster events
+      if (ticketmasterEvents.length === 0) {
+        setLoadingEvents(true)
+        try {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/ticketmaster-events`)
+          const data = await res.json()
+          setTicketmasterEvents(Array.isArray(data) ? data.slice(0, 4) : [])
+        } catch (error) {
+          console.error('Failed to fetch events:', error)
+        } finally {
+          setLoadingEvents(false)
+        }
+      }
     } else {
       router.push(tool.route)
     }
@@ -856,40 +871,33 @@ export function LandingPage() {
       <div className={`modal-overlay ${modalOpen ? 'open' : ''}`} id="modal" onClick={() => setModalOpen(false)}>
         <div className="modal" onClick={(e) => e.stopPropagation()}>
           <div className="modal-head">
-            <h3>Upcoming Events — Featured Venues</h3>
+            <h3>Discovered Events — Ticketmaster</h3>
             <button className="icon-btn" onClick={() => setModalOpen(false)}>
               <X size={22} />
             </button>
           </div>
           <div className="modal-body">
-            <div className="listing">
-              <div>
-                <div className="ln">Lakers vs Celtics — Crypto.com Arena</div>
-                <div className="lsub">Los Angeles, CA · Today</div>
-              </div>
-              <div className="price up">$48 ↑</div>
-            </div>
-            <div className="listing">
-              <div>
-                <div className="ln">Taylor Swift — SoFi Stadium</div>
-                <div className="lsub">Inglewood, CA · Tomorrow</div>
-              </div>
-              <div className="price">$124</div>
-            </div>
-            <div className="listing">
-              <div>
-                <div className="ln">Coldplay — MetLife Stadium</div>
-                <div className="lsub">East Rutherford, NJ · This weekend</div>
-              </div>
-              <div className="price down">$62 ↓</div>
-            </div>
-            <div className="listing">
-              <div>
-                <div className="ln">NFL Preseason — SoFi Stadium</div>
-                <div className="lsub">Inglewood, CA · Next week</div>
-              </div>
-              <div className="price">$38</div>
-            </div>
+            {loadingEvents ? (
+              <div className="text-center py-8 text-slate-500 dark:text-slate-400">Loading events...</div>
+            ) : ticketmasterEvents.length === 0 ? (
+              <div className="text-center py-8 text-slate-500 dark:text-slate-400">No events discovered yet</div>
+            ) : (
+              ticketmasterEvents.map((event, idx) => {
+                const eventDate = new Date(event.event_date)
+                const formattedDate = eventDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+                return (
+                  <div key={idx} className="listing">
+                    <div>
+                      <div className="ln">{event.event_name} — {event.venue_name}</div>
+                      <div className="lsub">{formattedDate}</div>
+                    </div>
+                    <a href={event.source_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline">
+                      View →
+                    </a>
+                  </div>
+                )
+              })
+            )}
           </div>
         </div>
       </div>
